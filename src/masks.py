@@ -1,6 +1,5 @@
 from typing import Optional, Union
 
-
 def get_mask_card_number(card_number: Optional[Union[str, int]]) -> Optional[str]:
     """Маскирует номер банковской карты, оставляя видимыми первые 6 и последние 4 цифры.
     Args: card_number: Номер карты (строка или целое число)
@@ -51,5 +50,3 @@ def get_mask_account(account_count: Optional[Union[str, int]]) -> Optional[str]:
     mask_account: str = f"**{account_count_str[-4:]}"
     return mask_account
 
-
-print(get_mask_account(1234567890123456))
