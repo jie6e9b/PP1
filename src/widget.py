@@ -1,3 +1,4 @@
+from tkinter.scrolledtext import example
 from typing import Optional
 from masks import get_mask_card_number, get_mask_account
 
@@ -28,6 +29,30 @@ def mask_account_card(paymetn_str_data: Optional[str]) -> Optional[str]:
         return f"{card_type} {masked_number}"
 
 
-print(mask_account_card("Visa Platinum 7000792289606361"))
+print(mask_account_card("Счет 35383033474447895560"))
 
 
+def get_date(date_str: Optional[str]) -> Optional[str]:
+    """Преобразует дату из формата ISO в формат ДД.ММ.ГГГГ.
+    Args:date_str: Строка с датой в формате "ГГГГ-ММ-ДДTчч:мм:сс.мс"
+    Returns: Строка с датой в формате "ДД.ММ.ГГГГ" или None при некорректных данных
+    Example: >>> get_date("2024-03-11T02:26:18.671407") -> "11.03.2024"""
+
+    if date_str is None:
+        return None
+
+    if not isinstance(date_str, str):
+        return None
+
+    try:
+        date_part = date_str.split('T')[0]
+        # Разбиваем дату на компоненты
+        year, month, day = date_part.split('-')
+        # Форматируем дату в нужный формат
+        formatted_date = f"{day}.{month}.{year}"
+
+        return formatted_date
+    except (ValueError, IndexError):
+        return None
+
+print(get_date("2024-03-11T02:26:18.671407"))
