@@ -6,7 +6,7 @@ def mask_account_card(paymetn_str_data: Optional[str]) -> Optional[str]:
                          либо счет карты и ее номер,
     в ответ выдает либо тип и замаскировнный get_mask_card_number номер;
                    либо счет и замаскированный get_mask_account номер
-    Пример для карты
+    Пример для карты (могут быть разные типы)
     Args: Visa Platinum 7000792289606361 # входной аргумент
     Returns: Visa Platinum 7000 79** **** 6361 # выход функции
     Пример для счета
