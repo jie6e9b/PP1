@@ -1,4 +1,3 @@
-from tkinter.scrolledtext import example
 from typing import Optional
 from masks import get_mask_card_number, get_mask_account
 
@@ -8,11 +7,11 @@ def mask_account_card(paymetn_str_data: Optional[str]) -> Optional[str]:
     в ответ выдает либо тип и замаскировнный get_mask_card_number номер;
                    либо счет и замаскированный get_mask_account номер
     Пример для карты
-    Args: Visa Platinum 7000792289606361  # входной аргумент
-    Returns: Visa Platinum 7000 79** **** 6361  # выход функции
+    Args: Visa Platinum 7000792289606361 # входной аргумент
+    Returns: Visa Platinum 7000 79** **** 6361 # выход функции
     Пример для счета
-    Args: Счет 73654108430135874305  # входной аргумент
-    Returns: Счет **4305  # выход функции """
+    Args: Счет 73654108430135874305 # входной аргумент
+    Returns: Счет **4305 # выход функции """
 
     if paymetn_str_data is None:
         return None
