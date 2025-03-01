@@ -175,3 +175,8 @@ cython_debug/
 
 # исключение для свопа, индекс не требуюется
 .swp
+
+# General MacOS
+.DS_Store
+.AppleDouble
+.LSOverride
