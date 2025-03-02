@@ -42,7 +42,7 @@ git clone https://github.com/jie6e9b/PP1.git
 
 ## ▎Лицензия
 
-[MIT](LICENSE)
+Предположительно MIT
 
 ## ▎Авторы
 
