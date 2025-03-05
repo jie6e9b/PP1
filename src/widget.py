@@ -1,5 +1,5 @@
 from typing import Optional
-from masks import get_mask_card_number, get_mask_account
+from src.masks import get_mask_card_number, get_mask_account
 
 def mask_account_card(paymetn_str_data: Optional[str]) -> Optional[str]:
     """Принимает на вход либо тип карты и ее номер;
@@ -15,6 +15,10 @@ def mask_account_card(paymetn_str_data: Optional[str]) -> Optional[str]:
 
     if paymetn_str_data is None:
         return None
+
+
+    if not paymetn_str_data:
+        return ""
 
     part_account_slpit = paymetn_str_data.split()
     if part_account_slpit[0] == "Счет":
@@ -54,4 +58,4 @@ def get_date(date_str: Optional[str]) -> Optional[str]:
     except (ValueError, IndexError):
         return None
 
-print(get_date("2024-03-11T02:26:18.671407"))
+# print(get_date("2024-03-11T02:26:18.671407"))

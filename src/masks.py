@@ -26,10 +26,6 @@ def get_mask_card_number(card_number: Optional[Union[str, int]]) -> Optional[str
     return masked_number
 
 
-print(get_mask_card_number(1234567890123456))
-print(get_mask_card_number("1111222233334444"))
-
-
 def get_mask_account(account_count: Optional[Union[str, int]]) -> Optional[str]:
     """Маскирует номер банковского счета, оставляя видимыми только последние 4 цифры.
     Args: account_number: Номер счета (строка или целое число)

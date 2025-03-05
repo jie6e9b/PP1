@@ -1,6 +1,5 @@
-from tarfile import TruncatedHeaderError
-
 import pytest
+
 
 @pytest.fixture
 def valid_card_number() -> str:
@@ -12,6 +11,3 @@ def valid_card_number() -> str:
 def valid_card_number_int() -> int:
     """Фикстура для валидного номера карты в виде целого числа."""
     return 1234567890123456
-
-
-
