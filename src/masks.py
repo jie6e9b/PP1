@@ -27,6 +27,7 @@ def get_mask_card_number(card_number: Optional[Union[str, int]]) -> Optional[str
 
 
 print(get_mask_card_number(1234567890123456))
+print(get_mask_card_number("1111222233334444"))
 
 
 def get_mask_account(account_count: Optional[Union[str, int]]) -> Optional[str]:
