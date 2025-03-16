@@ -1,5 +1,5 @@
-import pytest
 from src.processing import filter_by_state, sort_by_date
+
 
 def test_filter_by_state_executed():
     """Тест фильтрации операций со статусом EXECUTED."""
@@ -150,4 +150,3 @@ def test_sort_by_date_missing_date_key():
     assert result[0]['id'] == 41428829, "Первой должна быть операция с самой новой датой"
     assert result[1]['id'] == 594226727, "Второй должна быть операция со следующей датой"
     assert 'date' not in result[2], "Операция без даты должна быть последней"
-

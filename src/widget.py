@@ -1,6 +1,7 @@
 from typing import Optional
 from src.masks import get_mask_card_number, get_mask_account
 
+
 def mask_account_card(paymetn_str_data: Optional[str]) -> Optional[str]:
     """Принимает на вход либо тип карты и ее номер;
                          либо счет карты и ее номер,
@@ -15,7 +16,6 @@ def mask_account_card(paymetn_str_data: Optional[str]) -> Optional[str]:
 
     if paymetn_str_data is None:
         return None
-
 
     if not paymetn_str_data:
         return ""
