@@ -125,3 +125,11 @@ def returns_transaction_amount(transaction: dict) -> Optional[float]:
 # result = returns_transaction_amount(transaction2)
 # print(result)
 
+from pathlib import Path
+from tempfile import NamedTemporaryFile
+
+valid_date = [{"id":1, "name": 'grocery_shopping', "amount": 2000},
+{"id":2, "name": 'books_buy', "amount": 3000},
+{"id":3, "name": 'flight_buy', "amount": 4000}
+]
+
