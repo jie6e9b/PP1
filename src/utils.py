@@ -1,13 +1,12 @@
 import json
 import os
-from typing import List, Dict, Iterable
+from typing import List, Dict, Any
 from typing_extensions import Optional
 from dotenv import load_dotenv
 import requests
 
 
-
-def read_json_finance(path: str) -> list:
+def read_json_finance(path: str) -> List[Dict[str, Any]]:
     """ Читает JSON-файл с финансовыми транзакциями и возвращает их в виде списка словарей.
         Функция преобразует относительный путь в абсолютный, обрабатывает различные
         ошибки чтения файла и проверяет корректность формата данных.
@@ -17,8 +16,7 @@ def read_json_finance(path: str) -> list:
                  Возвращает пустой список в случае ошибки или если файл
                  не содержит список в качестве корневого элемента.
         Raises: Исключения не выбрасываются, все ошибки обрабатываются внутри функции
-                с выводом сообщений в консоль.
-    """
+                с выводом сообщений в консоль."""
     # Получаем путь к текущему модулю
     current_dir = os.path.dirname(os.path.abspath(__file__))
     # Поднимаемся на уровень выше (из src в корень проекта)
@@ -48,7 +46,8 @@ def read_json_finance(path: str) -> list:
 # result = read_json_finance('data/operations.json')
 # print("Результат:", result)
 
-def returns_transaction_amount(transaction: dict) -> Optional[float]:
+
+def returns_transaction_amount(transaction: Dict[str, Any]) -> Optional[float]:
     """ Возвращает сумму транзакции в рублях. Если валюта не рубли, конвертирует через API обмена валют.
     Args: transaction: Словарь с данными о транзакции
     Returns: float: Сумма транзакции в рублях или None в случае ошибки"""
@@ -124,12 +123,4 @@ def returns_transaction_amount(transaction: dict) -> Optional[float]:
 # }
 # result = returns_transaction_amount(transaction2)
 # print(result)
-
-from pathlib import Path
-from tempfile import NamedTemporaryFile
-
-valid_date = [{"id":1, "name": 'grocery_shopping', "amount": 2000},
-{"id":2, "name": 'books_buy', "amount": 3000},
-{"id":3, "name": 'flight_buy', "amount": 4000}
-]
-
+#
