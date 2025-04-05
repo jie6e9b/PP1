@@ -4,9 +4,8 @@ from tempfile import NamedTemporaryFile
 from os import unlink
 from pathlib import Path
 from io import StringIO
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Any
 from src.utils import read_json_finance, returns_transaction_amount
-import unittest
 from unittest.mock import patch, MagicMock
 
 
@@ -42,6 +41,63 @@ def test_valid_json_file() -> None:
         # Удаляем временный файл
         unlink(temp_file_path)
     print(temp_path.exists())
+
+
+def test_invalid_json_file() -> None:
+    """Тестирует функцию read_json_finance с некорректным JSON-файлом.
+    Создает временный файл с некорректными JSON-данными, вызывает функцию
+    read_json_finance и проверяет, что она корректно обрабатывает ошибку
+    и возвращает пустой список. После завершения теста временный файл удаляется."""
+
+    # Создаем временный файл с некорректными JSON-данными
+    invalid_json_content = '{"id": 1, "amount": 100, "date": "2023-01-01", }'
+    # Лишняя запятая делает JSON некорректным
+
+    # Создаем временный файл
+    with NamedTemporaryFile(mode='w', suffix='.json', delete=False) as temp_file:
+        temp_file.write(invalid_json_content)
+        temp_file_path = temp_file.name
+        print('------------')
+        print(temp_file.name)
+        temp_path = Path(temp_file.name)
+        print(temp_path.is_file())
+    print(temp_path.exists())
+
+    try:
+        # Вызываем тестируемую функцию
+        result = read_json_finance(temp_file_path)
+        # Проверяем результат - должен быть пустой список из-за некорректного JSON
+        assert result == [], f"Ожидался пустой список, получено {result}"
+        print("Тест успешно пройден: обработка некорректного JSON-файла")
+    finally:
+        # Удаляем временный файл
+        unlink(temp_file_path)
+    print(temp_path.exists())
+
+
+def test_general_exception_handling() -> None:
+    """Тестирует функцию read_json_finance на обработку общего исключения.
+    Создает мок-объект для open(), который вызывает исключение при попытке открыть файл.
+    Проверяет, что функция корректно обрабатывает исключение и возвращает пустой список."""
+
+    from unittest.mock import patch
+
+    # Определяем функцию, которая будет вызывать исключение
+    def mock_open_raising_exception(*args, **kwargs):
+        raise Exception("Тестовое исключение")
+
+    # Создаем несуществующий путь к файлу
+    test_file_path = "несуществующий_путь.json"
+
+    # Используем patch для замены встроенной функции open на нашу mock-функцию
+    with patch('builtins.open', mock_open_raising_exception):
+        # Вызываем тестируемую функцию
+        result = read_json_finance(test_file_path)
+
+        # Проверяем результат - должен быть пустой список из-за исключения
+        assert result == [], f"Ожидался пустой список, получено {result}"
+
+    print("Тест успешно пройден: обработка общего исключения")
 
 
 def test_nonexistent_file() -> None:
@@ -176,3 +232,41 @@ def test_transaction_in_foreign_currency(
     assert "https://api.apilayer.com/exchangerates_data/latest" in args[1]
     assert kwargs["headers"] == {"apikey": "fake_api_key"}
     assert kwargs["timeout"] == 10
+
+
+def test_missing_env_file_in_returns_transaction_amount() -> None:
+    """Тестирует функцию returns_transaction_amount на обработку исключения FileNotFoundError
+    при отсутствии файла .env.
+    Создает мок-объект для os.path.exists(), который возвращает False для проверки пути к .env файлу.
+    Проверяет, что функция корректно обрабатывает исключение и возвращает None."""
+
+    from unittest.mock import patch
+    import os
+
+    # Тестовая транзакция в валюте, отличной от рублей
+    test_transaction = {
+        "operationAmount": {
+            "amount": "100.00",
+            "currency": {
+                "code": "USD"
+            }
+        }
+    }
+
+    # Функция-заглушка, которая возвращает False для проверки пути к .env файлу
+    def mock_path_exists(path):
+        # Возвращаем False только для проверки .env файла
+        if path.endswith('.env'):
+            return False
+        # Для всех остальных проверок возвращаем результат реальной функции
+        return os.path.exists(path)
+
+    # Используем patch для замены os.path.exists на нашу mock-функцию
+    with patch('os.path.exists', mock_path_exists):
+        # Вызываем тестируемую функцию
+        result = returns_transaction_amount(test_transaction)
+
+        # Проверяем результат - должен быть None из-за исключения FileNotFoundError
+        assert result is None, f"Ожидался None, получено {result}"
+
+    print("Тест успешно пройден: обработка отсутствия файла .env в returns_transaction_amount")
