@@ -10,8 +10,12 @@ def setup_logger():
     - error_masks.log для уровней ERROR и CRITICAL
     Файлы перезаписываются при каждом запуске приложения.
     """
-    # Создаем директорию для логов, если она не существует
-    log_dir = "logs"
+    # Определяем путь к корню проекта
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    project_root = os.path.dirname(current_dir)  # Предполагаем, что masks.py находится в подпапке проекта
+
+    # Создаем директорию для логов в корне проекта
+    log_dir = os.path.join(project_root, 'logs')
     if not os.path.exists(log_dir):
         os.makedirs(log_dir)
 
