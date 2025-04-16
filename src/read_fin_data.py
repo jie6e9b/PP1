@@ -3,6 +3,7 @@ import pandas as pd
 from typing import List, Dict, Union
 import logging
 
+
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
@@ -50,32 +51,32 @@ def read_financial_data(path: str, file_type: str = 'auto') -> List[Dict]:
         return []
 
 
-# Тест
-def main():
-
-    # Путь к файлам данных
-    data_folder = 'data/'
-    # Получаем путь к текущему модулю
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    # Поднимаемся на уровень выше (из src в корень проекта)
-    parent_dir = os.path.dirname(current_dir)
-    # Формируем полный путь к директории с данными
-    full_data_path = os.path.join(parent_dir, data_folder)
-
-    # CSV файл
-    csv_transactions = read_financial_data(os.path.join(full_data_path, "transactions.csv"))
-
-    # Excel файл
-    excel_transactions = read_financial_data(os.path.join(full_data_path, "transactions_excel.xlsx"), file_type='xlsx')
-
-    # Автоматическое определение типа файла
-    auto_transactions = read_financial_data(os.path.join(full_data_path, "transactions_excel.xlsx"))
-
-    # Здесь должен быть код для использования полученных данных
-    # Например:
-    print(f"CSV данные: {len(csv_transactions)} записей")
-    print(f"Excel данные: {len(excel_transactions)} записей")
-    print(f"Авто-определенные данные: {len(auto_transactions)} записей")
-    print(csv_transactions)
-if __name__ == "__main__":
-    main()
+# def main():
+#
+#     # Путь к файлам данных
+#     data_folder = 'data/'
+#     # Получаем путь к текущему модулю
+#     current_dir = os.path.dirname(os.path.abspath(__file__))
+#     # Поднимаемся на уровень выше (из src в корень проекта)
+#     parent_dir = os.path.dirname(current_dir)
+#     # Формируем полный путь к директории с данными
+#     full_data_path = os.path.join(parent_dir, data_folder)
+#
+#     # CSV файл
+#     csv_transactions = read_financial_data(os.path.join(full_data_path, "transactions.csv"))
+#
+#     # Excel файл
+#     excel_transactions = read_financial_data(os.path.join(full_data_path, "transactions_excel.xlsx"), file_type='xlsx')
+#
+#     # Автоматическое определение типа файла
+#     auto_transactions = read_financial_data(os.path.join(full_data_path, "transactions_excel.xlsx"))
+#
+#     # Здесь должен быть код для использования полученных данных
+#     # Например:
+#     print(f"CSV данные: {len(csv_transactions)} записей")
+#     print(f"Excel данные: {len(excel_transactions)} записей")
+#     print(f"Авто-определенные данные: {len(auto_transactions)} записей")
+#     print(excel_transactions)
+#
+# test_1 = main()
+# print(main())
