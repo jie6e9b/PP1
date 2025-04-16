@@ -1,8 +1,7 @@
-import unittest
 import os
 import pandas as pd
 import tempfile
-from unittest.mock import patch, MagicMock
+from unittest.mock import patch
 from src.read_fin_data import read_financial_data
 
 # Глобальные переменные для тестовых данных

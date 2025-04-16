@@ -2,7 +2,7 @@ import logging
 import os
 import json
 import requests
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Any
 from typing_extensions import Optional
 from dotenv import load_dotenv
 
@@ -101,14 +101,6 @@ def read_json_finance(path: str) -> List[Dict[str, Any]]:
 # тестирование работы функции "в ручную"
 # result = read_json_finance('data/operations.json')
 # print("Результат:", result)
-
-
-import logging
-import os
-from typing import Dict, Any, Optional
-import json
-import requests
-from dotenv import load_dotenv
 
 
 def returns_transaction_amount(transaction: Dict[str, Any]) -> Optional[float]:
@@ -210,4 +202,3 @@ def returns_transaction_amount(transaction: Dict[str, Any]) -> Optional[float]:
 # }
 # result = returns_transaction_amount(transaction2)
 # print(result)
-

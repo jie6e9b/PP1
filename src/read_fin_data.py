@@ -1,6 +1,5 @@
-import os
 import pandas as pd
-from typing import List, Dict, Union
+from typing import List, Dict
 import logging
 
 
@@ -66,7 +65,8 @@ def read_financial_data(path: str, file_type: str = 'auto') -> List[Dict]:
 #     csv_transactions = read_financial_data(os.path.join(full_data_path, "transactions.csv"))
 #
 #     # Excel файл
-#     excel_transactions = read_financial_data(os.path.join(full_data_path, "transactions_excel.xlsx"), file_type='xlsx')
+#     excel_transactions = read_financial_data(os.path.join(full_data_path,
+#     "transactions_excel.xlsx"), file_type='xlsx')
 #
 #     # Автоматическое определение типа файла
 #     auto_transactions = read_financial_data(os.path.join(full_data_path, "transactions_excel.xlsx"))
