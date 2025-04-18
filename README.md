@@ -100,17 +100,6 @@ example_function ok
   - Информативное логирование процесса
 
 
-## ▎Требования
-
-- Python 3.6 или выше
-- 
-## ▎Зависимости
-poetry add pytest
-
-## ▎Установка
-
-git clone https://github.com/jie6e9b/PP1.git
-
 ## ▎Тестирование
 
 ### ▎5. Модуль тестирования `test_decorators`
@@ -257,6 +246,17 @@ YYYY-MM-DD HH:MM:SS,ms - utils.py - LEVEL - Сообщение
 ## ▎Лицензия
 
 Предположительно MIT
+
+## ▎Требования
+
+- Python 3.6 или выше
+- 
+## ▎Зависимости
+poetry add pytest
+
+## ▎Установка
+
+git clone https://github.com/jie6e9b/PP1.git
 
 ## ▎Авторы
 
