@@ -43,7 +43,15 @@ def filter_by_currency(transactions: List[Dict], currency: str) -> Iterable[Dict
     Note: Валюта находится во вложенной структуре:
     transaction["operationAmount"]["currency"]["code"] """
 
-    return filter(lambda transaction: transaction["operationAmount"]["currency"]["code"] == currency, transactions)
+    return filter(
+            lambda transaction: (
+                # Для JSON-файла
+                (transaction.get('operationAmount', {}).get('currency', {}).get('code') == currency) or
+                # Для CSV/XLSX файлов
+                (transaction.get('currency_name') == currency)
+            ),
+            transactions
+        )
 
 # # Проверим работу фильтра
 # usd_transactions = filter_by_currency(transactions, "USD")
