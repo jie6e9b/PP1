@@ -44,14 +44,11 @@ def sort_by_date(operations: list[dict], reverse: bool = True) -> list[dict]:
 
 
 def filter_operations_by_keyword(bank_operations: list[dict], search_string: str) -> list[dict]:
-
     """ Функция фильтрует список словарей по строке введенной пользователем,
     принимает список словарей с данными о банковских операциях и строку поиска,
     Args: list_dict: Список словарей для фильтрации
           search_string: Строка, введенная пользователем
-    Returns: Отфильтрованный список словарей у которых в описании есть данная строка
-    """
-
+    Returns: Отфильтрованный список словарей у которых в описании есть данная строка"""
     filtered_operations = [operation for operation in bank_operations
             if (isinstance(operation.get("description"), str)
             and re.search(search_string, operation["description"], re.IGNORECASE))]
@@ -66,12 +63,9 @@ def count_operations_by_category(bank_operations: list[dict], categories: list[s
     Args: list_dict: Список словарей для фильтрации
          categories: Строка, список категорий операций
     Returns: Отфильтрованный список словарей у которых список категорий операций"""
-
-
     categories_counts = Counter(
         transaction["description"].lower()
         for transaction in bank_operations
-        if transaction["description"].lower() in list(map(str.lower, categories))
-    )
+        if transaction["description"].lower() in list(map(str.lower, categories)))
 
     return dict(categories_counts)

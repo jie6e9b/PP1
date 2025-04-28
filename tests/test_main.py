@@ -2,6 +2,7 @@ import os
 import pytest
 from unittest.mock import patch, mock_open
 from typing import List, Dict, Any
+from io import StringIO
 
 from main import (
     get_data_source_selection,
@@ -36,14 +37,26 @@ TEST_TRANSACTIONS = [
     }
 ]
 
-
-def test_get_data_source_selection():
-    """Тест выбора источника данных"""
+# Тесты для get_data_source_selection
+def test_get_data_source_selection_valid_input():
+    # Тест корректного ввода
     with patch('builtins.input', return_value='1'):
         assert get_data_source_selection() == 1
 
-    with patch('builtins.input', side_effect=['4', '2']):
+    with patch('builtins.input', return_value='2'):
         assert get_data_source_selection() == 2
+
+    with patch('builtins.input', return_value='3'):
+        assert get_data_source_selection() == 3
+
+def test_get_data_source_selection_invalid_input():
+    # Тест некорректного ввода с последующим корректным вводом
+    inputs = ['4', '0', 'abc', '2']
+    with patch('builtins.input', side_effect=inputs):
+        with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
+            result = get_data_source_selection()
+            assert result == 2
+            assert "Ошибка!" in mock_stdout.getvalue()
 
 
 def test_load_transactions(tmp_path):
