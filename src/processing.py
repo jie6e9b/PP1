@@ -1,6 +1,6 @@
 import re
 from collections import Counter
-from typing import Union
+# from typing import Union
 
 
 def filter_by_state(operations: list, state: str = 'EXECUTED') -> list:
@@ -50,8 +50,8 @@ def filter_operations_by_keyword(bank_operations: list[dict], search_string: str
           search_string: Строка, введенная пользователем
     Returns: Отфильтрованный список словарей у которых в описании есть данная строка"""
     filtered_operations = [operation for operation in bank_operations
-            if (isinstance(operation.get("description"), str)
-            and re.search(search_string, operation["description"], re.IGNORECASE))]
+                           if (isinstance(operation.get("description"), str)
+                               and re.search(search_string, operation["description"], re.IGNORECASE))]
 
     return filtered_operations
 

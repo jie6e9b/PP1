@@ -49,6 +49,7 @@ def main() -> None:
     # Вывод результатов
     display_transactions(transactions, data_source)
 
+
 def get_data_source_selection() -> int:
     """ Интерактивный выбор источника данных с валидацией ввода.
         Returns: int: Номер выбранного источника данных (1 - JSON, 2 - CSV, 3 - XLSX) """
@@ -85,6 +86,7 @@ def load_transactions(source_type: int) -> List[Dict[str, Any]]:
     loader, file_path = source_map[source_type]
     print(f"Для обработки выбран {file_path}-файл.")
     return loader(file_path)
+
 
 def process_transactions_filters(transactions: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     """ Последовательная фильтрация транзакций по различным параметрам.
@@ -142,6 +144,7 @@ def filter_transactions_by_status(transactions: List[Dict[str, Any]]) -> List[Di
 
         return filtered_transactions
 
+
 def sort_transactions_by_date(transactions: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     """ Сортирует список транзакций по дате на основе пользовательского выбора.
     Args: transactions (List[Dict[str, Any]]): Список транзакций для сортировки
@@ -180,6 +183,7 @@ def sort_transactions_by_date(transactions: List[Dict[str, Any]]) -> List[Dict[s
             print(f"Операции отсортированы по {'убыванию' if is_reverse else 'возрастанию'} даты.")
             return sorted_transactions
 
+
 def filter_transactions_by_currency(transactions: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     """Фильтрует список транзакций по выбранной пользователем валюте.
     Args: transactions (List[Dict[str, Any]]): Список транзакций для фильтрации
@@ -212,6 +216,7 @@ def filter_transactions_by_currency(transactions: List[Dict[str, Any]]) -> List[
 
         print(f"Найдено {len(filtered_transactions)} транзакций в валюте {answer_filter_by_currency}.")
         return filtered_transactions
+
 
 def filter_transactions_by_keyword(transactions: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     """ Фильтрует список транзакций по ключевому слову в описании операции.
@@ -259,7 +264,7 @@ def display_transactions(transactions: List[Dict[str, Any]], data_source: int) -
         print("Не найдено ни одной транзакции, подходящей под ваши условия фильтрации.")
         return
 
-    print(f"Распечатываю итоговый список транзакций...")
+    print("Распечатываю итоговый список транзакций...")
     print(f"Всего банковских операций в выборке: {len(transactions)}.")
     print("-" * 50)
 
@@ -289,7 +294,6 @@ def display_transactions(transactions: List[Dict[str, Any]], data_source: int) -
         print(f"Сумма: {amount} {currency}")
         print("-" * 50)  # Разделитель между транзакциями
 
+
 if __name__ == "__main__":
     main()
-
-

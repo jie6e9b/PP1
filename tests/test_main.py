@@ -1,7 +1,7 @@
-import os
-import pytest
-from unittest.mock import patch, mock_open
-from typing import List, Dict, Any
+# import os
+# import pytest
+from unittest.mock import patch  # , mock_open
+# from typing import List, Dict, Any
 from io import StringIO
 
 from main import (
@@ -37,6 +37,7 @@ TEST_TRANSACTIONS = [
     }
 ]
 
+
 # Тесты для get_data_source_selection
 def test_get_data_source_selection_valid_input():
     # Тест корректного ввода
@@ -48,6 +49,7 @@ def test_get_data_source_selection_valid_input():
 
     with patch('builtins.input', return_value='3'):
         assert get_data_source_selection() == 3
+
 
 def test_get_data_source_selection_invalid_input():
     # Тест некорректного ввода с последующим корректным вводом
